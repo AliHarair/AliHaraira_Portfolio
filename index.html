@@ -1,0 +1,1108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ali Haraira · software engineer</title>
+    <!-- Font Awesome 6 (free) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <!-- Google Fonts: Inter + Playfair for subtle headings -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- separate CSS file (embedded below for single-file demo, but clearly separated by comment) -->
+    <!-- ===== style.css ===== -->
+    <style>
+      /* 
+     * style.css – improved font, color palette, animations 
+     * all classes are independent and manageable
+     */
+      :root {
+        --deep-navy: #0c1b2f;
+        --teal-accent: #1e6f6f;
+        --electric-blue: #2565ae;
+        --mint-light: #d4f0f0;
+        --soft-white: #f9fcff;
+        --slate: #2e405b;
+        --charcoal: #172b3a;
+        --card-bg: #ffffff;
+        --shadow-sm:
+          0 10px 25px -5px rgba(0, 30, 40, 0.1),
+          0 8px 10px -6px rgba(0, 0, 0, 0.02);
+        --shadow-hover: 0 25px 40px -12px rgba(0, 60, 80, 0.25);
+        --border-light: #e3ecf5;
+        --gradient-logo: linear-gradient(135deg, #0c1b2f, #1e6f6f);
+        --gradient-btn: linear-gradient(135deg, #0c1b2f, #1b4d5e);
+        --gradient-progress: linear-gradient(90deg, #2565ae, #1e6f6f);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--soft-white);
+        color: var(--deep-navy);
+        line-height: 1.5;
+        scroll-behavior: smooth;
+        opacity: 0;
+        animation: fadeInBody 0.6s ease-out forwards;
+      }
+
+      @keyframes fadeInBody {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      /* ---------- typography refinements ---------- */
+      h1,
+      h2,
+      h3,
+      .logo {
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      .section-title {
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: var(--deep-navy);
+        margin-bottom: 0.5rem;
+        position: relative;
+        display: inline-block;
+      }
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: var(--teal-accent);
+        border-radius: 4px;
+      }
+      .section-sub {
+        color: var(--slate);
+        font-size: 1.15rem;
+        max-width: 700px;
+        margin-bottom: 3rem;
+        font-weight: 400;
+      }
+
+      /* ---------- navigation & buttons ---------- */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 0;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .logo {
+        font-weight: 800;
+        font-size: 1.7rem;
+        background: var(--gradient-logo);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      .logo i {
+        background: none;
+        -webkit-text-fill-color: var(--teal-accent); /* keeps icon solid */
+        color: var(--teal-accent);
+        font-size: 1.8rem;
+      }
+      .nav-links {
+        display: flex;
+        gap: 2.8rem;
+        font-weight: 500;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: var(--charcoal);
+        transition:
+          color 0.2s,
+          transform 0.2s;
+        font-weight: 500;
+        position: relative;
+      }
+      .nav-links a:hover {
+        color: var(--teal-accent);
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0%;
+        height: 2px;
+        background: var(--teal-accent);
+        transition: width 0.2s ease;
+      }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+      .btn {
+        display: inline-block;
+        background: white;
+        padding: 0.7rem 2rem;
+        border-radius: 40px;
+        font-weight: 600;
+        text-decoration: none;
+        color: var(--deep-navy);
+        border: 1px solid var(--border-light);
+        box-shadow: var(--shadow-sm);
+        transition: all 0.25s;
+        cursor: pointer;
+        font-size: 0.95rem;
+      }
+      .btn i {
+        margin-right: 8px;
+      }
+      .btn-primary {
+        background: var(--gradient-btn);
+        color: white;
+        border: none;
+        box-shadow: 0 10px 20px -8px rgba(0, 60, 70, 0.3);
+      }
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #13354a, #1e6f6f);
+        transform: translateY(-3px);
+        box-shadow: 0 18px 30px -8px rgba(30, 111, 111, 0.4);
+      }
+      .btn-outline {
+        border: 2px solid var(--deep-navy);
+        background: transparent;
+      }
+      .btn-outline:hover {
+        background: #eaf4fc;
+        transform: translateY(-2px);
+      }
+
+      /* ---------- hero section ---------- */
+      .hero {
+        padding: 2rem 0 4rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        animation: slideUp 0.8s ease;
+      }
+      @keyframes slideUp {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .hero-content {
+        flex: 1 1 400px;
+      }
+      .hero-badge {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--teal-accent);
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+      .hero-content h1 {
+        font-size: 3.8rem;
+        font-weight: 800;
+        line-height: 1.1;
+        margin: 0.25rem 0 0.25rem;
+        color: var(--deep-navy);
+      }
+      .hero-content h2 {
+        font-size: 2rem;
+        font-weight: 500;
+        color: var(--slate);
+        margin-bottom: 1.2rem;
+      }
+      .hero-desc {
+        font-size: 1.2rem;
+        color: #2b4a5c;
+        max-width: 600px;
+        margin-bottom: 2rem;
+      }
+      .stats-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.2rem;
+        margin: 2rem 0 2.2rem;
+      }
+      .stat-item {
+        background: var(--card-bg);
+        padding: 0.9rem 1.8rem;
+        border-radius: 50px;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--border-light);
+        text-align: center;
+        transition: all 0.2s;
+      }
+      .stat-item:hover {
+        transform: scale(1.02);
+        border-color: var(--teal-accent);
+      }
+      .stat-number {
+        font-size: 1.9rem;
+        font-weight: 800;
+        color: var(--deep-navy);
+        line-height: 1.2;
+      }
+      .stat-label {
+        font-size: 0.85rem;
+        color: var(--slate);
+        font-weight: 500;
+      }
+      .hero-image {
+        flex: 0 0 260px;
+        background: linear-gradient(145deg, #ddf2f2, #ffffff);
+        border-radius: 40% 60% 30% 70% / 50% 40% 60% 50%;
+        padding: 1.2rem;
+        box-shadow: 20px 20px 30px rgba(0, 40, 50, 0.1);
+        transition: transform 0.3s ease;
+      }
+      .hero-image:hover {
+        transform: rotate(2deg) scale(1.02);
+      }
+      .hero-image img {
+        width: 100%;
+        filter: drop-shadow(0 8px 16px rgba(0, 40, 50, 0.15));
+      }
+
+      /* ---------- feature card ---------- */
+      .featured-card {
+        background: var(--card-bg);
+        border-radius: 40px;
+        padding: 2.5rem;
+        margin: 4rem 0;
+        box-shadow: var(--shadow-hover);
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        align-items: center;
+        transition: all 0.3s;
+      }
+      .featured-card:hover {
+        box-shadow: 0 35px 55px -18px #1e6f6f80;
+      }
+      .featured-tag {
+        background: var(--mint-light);
+        color: var(--deep-navy);
+        font-size: 0.8rem;
+        font-weight: 700;
+        padding: 0.3rem 1.4rem;
+        border-radius: 30px;
+        display: inline-block;
+        margin-bottom: 1rem;
+      }
+      .featured-content h3 {
+        font-size: 2.4rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+      .featured-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        margin: 1.5rem 0;
+      }
+      .featured-meta span {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: #ecf7f7;
+        padding: 0.4rem 1.4rem;
+        border-radius: 40px;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+      .tech-badge {
+        background: var(--deep-navy);
+        color: white;
+        padding: 0.3rem 1.3rem;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+
+      /* ---------- skills grid + cards ---------- */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+      }
+      .skill-card {
+        background: var(--card-bg);
+        padding: 2rem;
+        border-radius: 30px;
+        border: 1px solid var(--border-light);
+        box-shadow: var(--shadow-sm);
+        transition: all 0.3s;
+      }
+      .skill-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-hover);
+        border-color: var(--teal-accent);
+      }
+      .skill-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.3rem;
+        font-weight: 600;
+      }
+      .progress-bg {
+        height: 10px;
+        background: #daeaf0;
+        border-radius: 30px;
+        margin: 0.6rem 0 1.2rem;
+        overflow: hidden;
+      }
+      .progress-fill {
+        height: 10px;
+        background: var(--gradient-progress);
+        border-radius: 30px;
+        width: 0%;
+        transition: width 1s ease-in-out;
+      }
+      /* simulate loading animation (just for show) */
+      .skill-card:hover .progress-fill {
+        background: linear-gradient(90deg, #2b7bbc, #248f8f);
+      }
+      .specialty-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin-top: 1.5rem;
+      }
+      .specialty-item {
+        background: #e1f1f5;
+        padding: 0.4rem 1.2rem;
+        border-radius: 30px;
+        font-weight: 500;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--deep-navy);
+        transition: background 0.2s;
+      }
+      .specialty-item:hover {
+        background: #c3e2e8;
+      }
+
+      /* ---------- apps / projects grid ---------- */
+      .apps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0 5rem;
+      }
+      .app-card {
+        background: var(--card-bg);
+        border-radius: 30px;
+        padding: 2rem;
+        border: 1px solid var(--border-light);
+        transition: all 0.3s;
+        box-shadow: var(--shadow-sm);
+        animation: cardFade 0.6s ease backwards;
+      }
+      .app-card:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .app-card:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .app-card:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .app-card:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+      @keyframes cardFade {
+        0% {
+          opacity: 0;
+          transform: scale(0.98);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .app-card:hover {
+        transform: translateY(-8px);
+        border-color: var(--teal-accent);
+        box-shadow: var(--shadow-hover);
+      }
+      .app-icon {
+        font-size: 2.8rem;
+        margin-bottom: 1rem;
+      }
+      .app-title {
+        font-size: 1.6rem;
+        font-weight: 700;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .app-badge {
+        background: var(--electric-blue);
+        color: white;
+        font-size: 0.7rem;
+        padding: 0.25rem 1rem;
+        border-radius: 30px;
+      }
+      .app-desc {
+        margin: 1rem 0 1.2rem;
+        color: var(--slate);
+      }
+      .app-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin: 1rem 0;
+      }
+      .app-tech span {
+        background: #eaf4fa;
+        padding: 0.3rem 1rem;
+        border-radius: 30px;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+
+      /* ---------- process steps ---------- */
+      .process-steps {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.8rem;
+        margin: 3rem 0 4rem;
+      }
+      .step {
+        flex: 1 1 200px;
+        background: var(--card-bg);
+        padding: 2rem;
+        border-radius: 30px;
+        border: 1px solid var(--border-light);
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+      .step:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-hover);
+      }
+      .step-number {
+        background: var(--deep-navy);
+        color: white;
+        width: 2.8rem;
+        height: 2.8rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        margin-bottom: 1.2rem;
+        font-size: 1.2rem;
+      }
+      .step ul {
+        list-style: none;
+      }
+      .step li {
+        margin-bottom: 0.6rem;
+        display: flex;
+        gap: 0.6rem;
+      }
+      .step li i {
+        color: var(--teal-accent);
+      }
+
+      .compact-badge {
+        background: var(--deep-navy);
+        color: white;
+        padding: 0.3rem 1.4rem;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.2s;
+      }
+      .compact-badge:hover {
+        background: var(--teal-accent);
+        transform: scale(1.02);
+      }
+
+      /* ---------- footer ---------- */
+      .footer {
+        background: var(--deep-navy);
+        color: white;
+        border-radius: 50px 50px 0 0;
+        padding: 3rem 2rem;
+        margin-top: 5rem;
+        text-align: center;
+      }
+      .footer h2 {
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+      }
+      .footer p {
+        color: #b8d0e0;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+      }
+      .contact-info {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        font-size: 1.1rem;
+      }
+      .contact-info i {
+        color: var(--teal-accent);
+        margin-right: 0.5rem;
+      }
+      hr {
+        border: 1px solid #1f5068;
+        margin: 2rem 0;
+      }
+      .copyright {
+        color: #9cb4d0;
+      }
+
+      /* small screens */
+      @media (max-width: 700px) {
+        .navbar {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .nav-links {
+          gap: 1.5rem;
+          flex-wrap: wrap;
+        }
+        .hero-content h1 {
+          font-size: 2.8rem;
+        }
+        .section-title {
+          font-size: 2rem;
+        }
+      }
+    </style>
+    <!-- end style.css -->
+  </head>
+  <body>
+    <div class="container">
+      <!-- navigation -->
+      <nav class="navbar">
+        <div class="logo"><i class="fas fa-cube"></i> Ali Haraira</div>
+        <div class="nav-links">
+          <a href="#work">Work</a>
+          <a href="#skills">Skills</a>
+          <a href="#process">Process</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a href="#" id="resumeBtn" class="btn"
+          ><i class="far fa-file-pdf"></i>Resume</a
+        >
+      </nav>
+
+      <!-- hero -->
+      <section class="hero">
+        <div class="hero-content">
+          <div class="hero-badge">SOFTWARE ENGINEER</div>
+          <h1>Ali Haraira</h1>
+          <h2>Unity · PHP Laravel · React</h2>
+          <p class="hero-desc">
+            Results-driven developer with 4+ years of experience in Unity game
+            development, PHP Laravel, and modern React. Passionate about
+            immersive digital experiences and clean, maintainable code.
+          </p>
+          <div class="stats-grid">
+            <div class="stat-item">
+              <span class="stat-number">6+</span>
+              <span class="stat-label">Projects</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">4+</span>
+              <span class="stat-label">Years exp</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">10+</span>
+              <span class="stat-label">Integrations</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">3.65</span>
+              <span class="stat-label">CGPA</span>
+            </div>
+          </div>
+          <a href="#work" class="btn btn-primary"
+            ><i class="fas fa-arrow-down"></i>View my work</a
+          >
+        </div>
+        <div class="hero-image">
+          <img
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='90' fill='%231e6f6f' opacity='0.15'/%3E%3Ccircle cx='100' cy='100' r='60' fill='%231e6f6f' opacity='0.2'/%3E%3Cpath fill='%230c1b2f' d='M120 80 L150 100 L120 120 L90 100 Z' /%3E%3C/svg%3E"
+            alt="Ali Haraira abstract"
+          />
+        </div>
+      </section>
+
+      <!-- featured experience -->
+      <div class="featured-card" id="work">
+        <div class="featured-content">
+          <span class="featured-tag"
+            ><i class="fas fa-briefcase"></i> CURRENT ROLE</span
+          >
+          <h3>PHP Laravel Developer</h3>
+          <p style="color: var(--slate); font-weight: 500">
+            ACE Money Transfer · Mar 2025 – Present
+          </p>
+          <p>
+            Scalable web apps, payment gateways (Worldpay, MB WAY, Cartes
+            Bancaires, iDEAL), RESTful APIs, secure transaction handling,
+            callbacks & webhooks.
+          </p>
+          <div class="featured-meta">
+            <span><i class="fas fa-credit-card"></i> 4+ gateways</span>
+            <span><i class="fas fa-lock"></i> Secure</span>
+            <span><i class="fas fa-code-branch"></i> Laravel</span>
+          </div>
+          <div
+            style="
+              display: flex;
+              gap: 0.6rem;
+              flex-wrap: wrap;
+              margin-top: 1.5rem;
+            "
+          >
+            <span class="tech-badge">PHP</span>
+            <span class="tech-badge">Laravel</span>
+            <span class="tech-badge">MySQL</span>
+            <span class="tech-badge">Bootstrap</span>
+            <span class="tech-badge">REST API</span>
+          </div>
+        </div>
+        <div style="flex: 0 0 80px; font-size: 4rem; opacity: 0.3">💳</div>
+      </div>
+
+      <!-- skills section -->
+      <h2 class="section-title" id="skills">Technical expertise</h2>
+      <p class="section-sub">
+        Full‑stack & game development · payment integrations · cross‑platform
+      </p>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-header">
+            <span>Unity (C#)</span> <span>90%</span>
+          </div>
+          <div class="progress-bg">
+            <div class="progress-fill" style="width: 90%"></div>
+          </div>
+          <div class="skill-header">
+            <span>PHP / Laravel</span> <span>88%</span>
+          </div>
+          <div class="progress-bg">
+            <div class="progress-fill" style="width: 88%"></div>
+          </div>
+          <div class="skill-header"><span>React</span> <span>80%</span></div>
+          <div class="progress-bg">
+            <div class="progress-fill" style="width: 80%"></div>
+          </div>
+          <div class="skill-header"><span>MySQL</span> <span>85%</span></div>
+          <div class="progress-bg">
+            <div class="progress-fill" style="width: 85%"></div>
+          </div>
+          <div class="skill-header">
+            <span>JavaScript</span> <span>85%</span>
+          </div>
+          <div class="progress-bg">
+            <div class="progress-fill" style="width: 85%"></div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h4 style="margin-bottom: 1rem">Specialized skills</h4>
+          <div class="specialty-list">
+            <span class="specialty-item"
+              ><i class="fas fa-credit-card"></i> Worldpay, MB WAY</span
+            >
+            <span class="specialty-item"
+              ><i class="fas fa-credit-card"></i> Cartes Bancaires, iDEAL</span
+            >
+            <span class="specialty-item"
+              ><i class="fas fa-gamepad"></i> AdMob / AppLovin / Unity Ads</span
+            >
+            <span class="specialty-item"
+              ><i class="fas fa-cloud"></i> Firebase (analytics, remote
+              config)</span
+            >
+            <span class="specialty-item"
+              ><i class="fas fa-vr-cardboard"></i> VR / multiplayer</span
+            >
+            <span class="specialty-item"
+              ><i class="fas fa-mobile-alt"></i> Android, iOS, WebGL</span
+            >
+            <span class="specialty-item"
+              ><i class="fas fa-code"></i> OOP, UML, Git</span
+            >
+          </div>
+          <p style="margin-top: 2rem">
+            <i class="fas fa-check-circle" style="color: #1e6f6f"></i> 4+ years
+            full‑stack & game dev
+          </p>
+        </div>
+      </div>
+
+      <!-- featured projects -->
+      <h2 class="section-title">Featured projects</h2>
+      <div class="apps-grid">
+        <div class="app-card">
+          <div class="app-icon">🎮</div>
+          <div class="app-title">
+            Simulator Games <span class="app-badge">Cedar</span>
+          </div>
+          <p class="app-desc">
+            Game mechanics, UI, optimization, memory & performance tuning.
+          </p>
+          <div class="app-tech">
+            <span>Unity</span><span>C#</span><span>AdMob</span
+            ><span>AppLovin</span>
+          </div>
+          <div>
+            <i class="fas fa-android"></i>
+            <i class="fas fa-apple"></i> Android/iOS
+          </div>
+        </div>
+        <div class="app-card">
+          <div class="app-icon">💱</div>
+          <div class="app-title">
+            Payment Integrations
+            <span class="app-badge" style="background: #1e6f6f">ACE Money</span>
+          </div>
+          <p class="app-desc">
+            Worldpay, MB WAY, iDEAL, Cartes Bancaires – webhooks, callbacks,
+            validation.
+          </p>
+          <div class="app-tech">
+            <span>Laravel</span><span>PHP</span><span>REST</span
+            ><span>MySQL</span>
+          </div>
+          <div><i class="fas fa-globe"></i> Web app</div>
+        </div>
+        <div class="app-card">
+          <div class="app-icon">🥽</div>
+          <div class="app-title">VR / Multiplayer</div>
+          <p class="app-desc">
+            Diagnosed complex VR issues, reskins, new functionalities (Nipsapp /
+            Game Alpha).
+          </p>
+          <div class="app-tech">
+            <span>Unity</span><span>VR</span><span>Multiplayer</span>
+          </div>
+          <div><i class="fas fa-vr-cardboard"></i> VR / mobile</div>
+        </div>
+        <div class="app-card">
+          <div class="app-icon">📱</div>
+          <div class="app-title">Action / RPG games</div>
+          <p class="app-desc">
+            Shooting, fighting, simulation – ad & analytics integration
+            (Firebase, Unity IAP).
+          </p>
+          <div class="app-tech">
+            <span>Unity</span><span>C#</span><span>IAP</span
+            ><span>Firebase</span>
+          </div>
+          <div>
+            <i class="fas fa-android"></i> <i class="fas fa-apple"></i> Cross
+          </div>
+        </div>
+      </div>
+
+      <!-- process steps -->
+      <h2 class="section-title" id="process">How I work</h2>
+      <p class="section-sub">
+        Creative problem‑solving, clean code, and secure integrations.
+      </p>
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h4>Plan & design</h4>
+          <ul>
+            <li><i class="fas fa-check"></i> Requirements / UML</li>
+            <li><i class="fas fa-check"></i> System design (SYSML)</li>
+            <li><i class="fas fa-check"></i> Database architecture</li>
+          </ul>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h4>Develop & integrate</h4>
+          <ul>
+            <li><i class="fas fa-check"></i> Agile sprints</li>
+            <li><i class="fas fa-check"></i> Payment gateways / APIs</li>
+            <li><i class="fas fa-check"></i> Ad mediation & analytics</li>
+          </ul>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h4>Optimize & deploy</h4>
+          <ul>
+            <li><i class="fas fa-check"></i> Performance tuning</li>
+            <li><i class="fas fa-check"></i> Cross‑platform deployment</li>
+            <li><i class="fas fa-check"></i> Monitoring & updates</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- badges -->
+      <div
+        style="
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+          justify-content: center;
+          margin: 2rem 0 3rem;
+        "
+      >
+        <span class="compact-badge"><i class="fas fa-ad"></i> AdMob</span>
+        <span class="compact-badge"
+          ><i class="fas fa-chart-bar"></i> Firebase Analytics</span
+        >
+        <span class="compact-badge"
+          ><i class="fas fa-sync-alt"></i> Remote Config</span
+        >
+        <span class="compact-badge"
+          ><i class="fas fa-cart-plus"></i> Unity IAP</span
+        >
+        <span class="compact-badge"
+          ><i class="fas fa-bell"></i> Mobile Notifications</span
+        >
+      </div>
+    </div>
+    <!-- end container -->
+
+    <!-- footer -->
+    <footer class="footer" id="contact">
+      <div class="container">
+        <h2>Let's build something amazing</h2>
+        <p>
+          Whether it's a game, a web app, or a complex payment integration – I
+          deliver secure, scalable, and engaging solutions.
+        </p>
+        <div class="contact-info">
+          <span><i class="fas fa-map-marker-alt"></i> Gujrat, Pakistan</span>
+          <span><i class="fas fa-phone-alt"></i> +92 316 7979691</span>
+          <span><i class="fas fa-envelope"></i> alibutt610354@gmail.com</span>
+          <span>
+                <i class="fab fa-linkedin"></i>
+                <a
+                    href="https://www.linkedin.com/in/ali-haraira-119a7a1ab"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style="color: white; text-decoration: none;"
+                >
+                    Ali Haraira
+                </a>
+          </span>
+        </div>
+        <hr />
+        <div class="copyright">
+          <i class="far fa-copyright"></i> 2026 Ali Haraira. All rights
+          reserved.
+        </div>
+      </div>
+    </footer>
+
+    <!-- tiny scripts (optional) -->
+    <script>
+      (function () {
+        const btn = document.getElementById("resumeBtn");
+
+        // fully built resume HTML (exact copy from PDF content, nicely formatted)
+        function buildResumeHTML() {
+          return `<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Ali Haraira · detailed resume</title>
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', 'Segoe UI', system-ui, sans-serif; }
+    body { background:#263b4a; display:flex; justify-content:center; padding:2rem 1rem; }
+    .resume-container { max-width:1000px; width:100%; background:#fcf9f4; border-radius:32px; box-shadow:0 30px 60px #00000050; overflow:hidden; }
+    .resume-header { background:#1e3c4f; color:white; padding:2rem 2.5rem 1.8rem; }
+    .resume-header h1 { font-size:3rem; font-weight:600; letter-spacing:-0.5px; line-height:1.1; }
+    .title-tag { font-size:1.2rem; color:#cbdbe9; margin-top:0.4rem; font-weight:400; }
+    .contact-row { display:flex; flex-wrap:wrap; gap:1.5rem 2.5rem; margin-top:1.5rem; border-top:1px solid #35637c; padding-top:1.5rem; }
+    .contact-item { display:flex; align-items:center; gap:8px; }
+    .main-grid { display:grid; grid-template-columns:1fr 2.2fr; background:#fcf9f4; }
+    .sidebar { background:#eef3f7; padding:2rem 1.6rem; border-right:1px solid #dae2e9; }
+    .main-content { padding:2rem 2rem 2rem 1.8rem; }
+    .section-title { font-size:1.1rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#1e3c4f; border-bottom:3px solid #c4d3e0; padding-bottom:0.5rem; margin:1.5rem 0 1.2rem; }
+    .section-title:first-of-type { margin-top:0; }
+    .skill-tag { background:white; padding:0.3rem 0.9rem; border-radius:20px; font-size:0.85rem; font-weight:500; color:#0f2a38; box-shadow:0 2px 5px #00000010; display:inline-block; margin:0.2rem 0.2rem; border:1px solid #ced9e2; }
+    .compact-list { list-style:none; } .compact-list li { margin-bottom:0.45rem; font-size:0.9rem; display:flex; gap:8px; } .compact-list li::before { content:"•"; color:#2d7ca0; font-weight:bold; }
+    .job-item { margin-bottom:1.8rem; } .job-header { display:flex; justify-content:space-between; font-weight:600; color:#0d3f57; flex-wrap:wrap; } .job-title { font-size:1.05rem; } .job-date { color:#4f6f85; font-weight:400; font-size:0.85rem; } .job-company { font-weight:500; color:#2b4e65; margin:0.1rem 0 0.5rem; } .job-desc { padding-left:1.2rem; list-style:none; } .job-desc li { font-size:0.9rem; margin-bottom:0.4rem; display:flex; gap:8px; } .job-desc li::before { content:"▹"; color:#1f6392; }
+    .edu-line { font-weight:600; font-size:1rem; margin:0.8rem 0 0.2rem; } .edu-detail { font-size:0.95rem; color:#1e3b4b; } hr { border:1px solid #d0dee9; margin:1rem 0; }
+    .badge-sm { background:white; border-radius:16px; padding:0.2rem 0.8rem; font-size:0.75rem; font-weight:600; color:#1f4b64; border:1px solid #adc6da; display:inline-block; margin:0.1rem 0.2rem; }
+    .skill-block { margin-bottom:1rem; }
+</style>
+</head>
+<body>
+<div class="resume-container">
+    <div class="resume-header">
+        <h1>Ali Haraira</h1>
+        <div class="title-tag">SOFTWARE ENGINEER | UNITY GAME DEVELOPER | PHP LARAVEL DEVELOPER</div>
+        <div class="contact-row">
+            <span class="contact-item">📍 Gujrat, Punjab Pakistan</span>
+            <span class="contact-item">📞 +92 316 7979691</span>
+            <span class="contact-item">✉️ alibutt610354@gmail.com</span>
+            <span class="contact-item">🔗 linkedin.com/in/ali-haraira-119a7a1ab</span>
+        </div>
+    </div>
+
+    <div class="main-grid">
+        <!-- SIDEBAR left -->
+        <div class="sidebar">
+            <div class="section-title">Technical Skills</div>
+            <div class="skill-block">
+                <span class="skill-tag">C#</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span> <span class="skill-tag">Bootstrap</span> <span class="skill-tag">PHP</span> <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">Worldpay</span> <span class="skill-tag">MB Way</span> <span class="skill-tag">Cartes Bancaires</span> <span class="skill-tag">iDEAL</span>
+                <span class="skill-tag">Checkout flow</span> <span class="skill-tag">webhooks</span> <span class="skill-tag">callbacks</span> <span class="skill-tag">transaction verification</span> <span class="skill-tag">refunds</span>
+                <span class="skill-tag">Payment validation</span> <span class="skill-tag">API authentication</span> <span class="skill-tag">secure data handling</span>
+                <span class="skill-tag">Unity</span> <span class="skill-tag">Visual Studio</span> <span class="skill-tag">Vs Code</span> <span class="skill-tag">Game mechanics</span> <span class="skill-tag">physics</span> <span class="skill-tag">AI</span>
+                <span class="skill-tag">Backend APIs</span> <span class="skill-tag">authentication</span> <span class="skill-tag">admin dashboards</span> <span class="skill-tag">responsive UI</span> <span class="skill-tag">role-based access</span>
+                <span class="skill-tag">database design</span> <span class="skill-tag">Android</span> <span class="skill-tag">iOS</span> <span class="skill-tag">WebGL</span> <span class="skill-tag">Debugging</span> <span class="skill-tag">optimization</span>
+                <span class="skill-tag">MySQL</span> <span class="skill-tag">UML</span> <span class="skill-tag">SYSML</span> <span class="skill-tag">OOP</span>
+            </div>
+
+            <div class="section-title">Core Competencies</div>
+            <ul class="compact-list">
+                <li>Creative problem-solving</li>
+                <li>Project management and teamwork</li>
+                <li>Attention to detail & adaptability</li>
+                <li>Communication & analytical skills</li>
+                <li>Time management & meeting deadlines</li>
+            </ul>
+
+            <div class="section-title">Game Dev Expertise</div>
+            <div><strong>Ad Integrations:</strong> <span class="badge-sm">AdMob</span> <span class="badge-sm">Applovin</span> <span class="badge-sm">Unity Ads</span> <span class="badge-sm">Facebook Ads</span></div>
+            <div style="margin-top:0.8rem;"><strong>Game Types:</strong> Action, Shooting, Role-Playing, Simulation, Fighting, Sports</div>
+            <div style="margin-top:0.8rem;"><strong>Plugins/SDKs:</strong> Firebase (analytics, remote config, review), Unity IAP, Unity Analytics, Mobile Notifications</div>
+
+            <div class="section-title">Education</div>
+            <div class="edu-line">Bachelor of Science in Software Engineering (BSSE)</div>
+            <div class="edu-detail">University of Lahore · CGPA: 3.65</div>
+        </div>
+
+        <!-- MAIN right -->
+        <div class="main-content">
+            <div class="section-title">Profile</div>
+            <p style="font-size:0.95rem; line-height:1.5; color: #1d2f3c;">Results-driven and innovative Software Developer with over 4 years of experience specializing in Unity game development and recent expertise in PHP Laravel web application development. Demonstrates strong proficiency in C#, PHP, and MySQL, with a solid understanding of game mechanics, artificial intelligence, backend architecture, and cross-platform deployment. Adept at full-stack development, RESTful API integration, payment gateway integrations (Worldpay Checkout, MB Way, Cartes Bancaires, iDEAL), and performance optimization. Known for delivering high-quality, scalable solutions through efficient project management, teamwork, and problem-solving. Passionate about creating immersive digital experiences and writing clean, maintainable code that drives user engagement and business value.</p>
+
+            <div class="section-title">Professional Experience</div>
+
+            <div class="job-item">
+                <div class="job-header"><span class="job-title">PHP Laravel Developer</span><span class="job-date">MAR 2025 - PRESENT</span></div>
+                <div class="job-company">ACE Money Transfer, Kharian</div>
+                <ul class="job-desc">
+                    <li>Developed and maintained scalable web applications using PHP Laravel, MySQL, and Bootstrap. Designed responsive and user-friendly interfaces.</li>
+                    <li>Integrated RESTful APIs and real-time data handling for business operations.</li>
+                    <li>Implemented secure payment gateway integrations: Worldpay Checkout, MB Way, Cartes Bancaires, iDEAL. Handled callbacks/webhooks, transaction validation, error handling.</li>
+                    <li>Ensured compliance with security best practices (tokenization, HTTPS, validation) for financial transactions.</li>
+                    <li>Collaborated with cross-functional teams, applied Git version control, database design, and app security.</li>
+                </ul>
+            </div>
+
+            <div class="job-item">
+                <div class="job-header"><span class="job-title">Unity Game Developer</span><span class="job-date">JUN 2024 - NOV 2024</span></div>
+                <div class="job-company">Cedar Technologies PVT. LTD, Gujranwala</div>
+                <ul class="job-desc">
+                    <li>Designed and implemented engaging game mechanics and user interfaces for simulator games.</li>
+                    <li>Optimized game performance, reducing memory usage and improving gameplay experience.</li>
+                    <li>Conducted code reviews and provided constructive feedback to ensure code quality.</li>
+                    <li>Collaborated with a multidisciplinary team to meet project deadlines efficiently.</li>
+                </ul>
+            </div>
+
+            <div class="job-item">
+                <div class="job-header"><span class="job-title">Unity Game Developer (Remote)</span><span class="job-date">MAR 2024 - MAY 2024</span></div>
+                <div class="job-company">Nipsapp (India), Game Alpha Studio (Lahore), Apex Solution (Islamabad)</div>
+                <ul class="job-desc">
+                    <li>Diagnosed and resolved complex VR and multiplayer game issues.</li>
+                    <li>Introduced new functionalities and performed seamless game reskins.</li>
+                    <li>Maintained consistent communication with international teams to meet client expectations.</li>
+                </ul>
+            </div>
+
+            <div class="job-item">
+                <div class="job-header"><span class="job-title">Unity Game Developer</span><span class="job-date">JAN 2023 - FEB 2024</span></div>
+                <div class="job-company">Cipher Star PVT. LTD, Lalamusa</div>
+                <ul class="job-desc">
+                    <li>Designed and developed captivating game mechanics and core gameplay features.</li>
+                    <li>Minimized load times and optimized memory usage to enhance performance.</li>
+                    <li>Created and maintained technical documentation for future development.</li>
+                    <li>Successfully integrated ad platforms (AdMob, Unity, Applovin) and analytics tools (Unity, Firebase).</li>
+                </ul>
+            </div>
+
+            <div class="job-item">
+                <div class="job-header"><span class="job-title">Unity Game Developer</span><span class="job-date">FEB 2021 - DEC 2022</span></div>
+                <div class="job-company">Cipher Coders PVT. LTD, Gujrat</div>
+                <ul class="job-desc">
+                    <li>Revamped outdated code to align with modern standards and best practices.</li>
+                    <li>Collaborated with artists and designers to develop visually appealing and interactive features.</li>
+                    <li>Utilized analytical thinking to solve critical issues and improve game functionality.</li>
+                    <li>Played a key role in brainstorming and implementing innovative gameplay ideas.</li>
+                </ul>
+            </div>
+
+            <div style="font-size:0.85rem; color:#3b5c74; margin-top:1.2rem; border-top:1px dashed #b3c9db; padding-top:0.8rem;">
+                <span>⭐ Backend APIs · authentication systems · admin dashboards · responsive UI · role-based access · database design</span>
+            </div>
+        </div>
+    </div>
+    <!-- tiny footer (optional) -->
+    <div style="background:#e2eaf1; padding:0.7rem 2rem; font-size:0.8rem; color:#2d4d65; text-align:right;">Ali Haraira · detailed resume</div>
+</div>
+</body>
+</html>`;
+        }
+
+        btn.addEventListener("click", function () {
+          // open a new blank window/tab
+          const resumeWindow = window.open("", "_blank");
+          if (resumeWindow) {
+            resumeWindow.document.write(buildResumeHTML());
+            resumeWindow.document.close(); // ensure rendering
+          } else {
+            alert("Please allow pop-ups to view the resume.");
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
